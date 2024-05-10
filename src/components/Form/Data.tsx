@@ -1,6 +1,7 @@
 export type DataProps = {
     user: any
 }
+
 function Data({user}: DataProps) {
     return (
         <>
