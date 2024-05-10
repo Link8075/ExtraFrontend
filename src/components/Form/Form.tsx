@@ -2,15 +2,18 @@ import "./Form.css"
 import { useState, useEffect } from "react"
 import Data from "./Data"
 
-const loginData = {
-      email: "vnavarro@ceti.mx",
-      password: "123456",
-};
+const API_URL = "http://localhost:3010"
+
+// const loginData = {
+//       email: "vnavarro@ceti.mx",
+//       password: "123456",
+// }
 
 function Form () {
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
-    const [showData, setShowData] = useState<boolean>(false)
+    // const [showData, setShowData] = useState<boolean>(false)
+    const [user, setUser] = useState<any>(null)
     const [messageError, setMessageError] = useState<string>("");
     
     useEffect(() => {
@@ -28,29 +31,50 @@ function Form () {
     }
     
     const handleOnClick = () => {
-        if (showData) {
-            setEmail("")
-            setPassword("")
-            setShowData(false)
-            setMessageError("")
-        }
-        else if (email === loginData.email && password === loginData.password) {
-            alert("Ingresó correctamente")
-            setShowData(true)
-            setMessageError("")
-        }
-        else if (!(email === loginData.email)) {
-            setMessageError("Correo incorrecto")
-            setShowData(false)
-        }
-        else if (!(password === loginData.password)) {
-            setMessageError("Contraseña incorrecta")
-            setShowData(false)
+        logIn({email, password})
+        // if (email === loginData.email && password === loginData.password) {
+        //     alert("Ingresó correctamente")
+        //     setMessageError("")
+        //     setShowData(true)
+        // }
+        // else if (!(email === loginData.email)) {
+        //     setMessageError("Correo incorrecto")
+        //     setShowData(false)
+        // }
+        // else if (!(password === loginData.password)) {
+        //     setMessageError("Contraseña incorrecta")
+        //     setShowData(false)
+        // }
+    }
+    
+    const logIn = async ({email, password}: {email:string, password:string}) => {
+        try {
+            const response = await fetch(`${API_URL}/api/v2/auth/login`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({email, password})
+            })
+            if (response.status === 200) {
+                const data = await response.json()
+                setUser(data)
+                setMessageError("")
+                console.log(data)
+                // setShowData(true)
+            }
+            else {
+                setMessageError("Datos incorrectos")
+                // setShowData(false)
+            }
+        } catch(error) {
+            console.error(error)
         }
     }
+    
     return (
         <>
-            <Data email={email} password={password} showData={showData}/>
+            <Data user={user}/>
             <section className="formContainer">
                 <span className="inputContainer">
                     <label htmlFor="email">Email:</label>
@@ -65,11 +89,7 @@ function Form () {
                         messageError && <div style={{color: 'red'}}>{messageError}</div>
                     }
                     </div>
-                <button onClick={handleOnClick}>
-                    {
-                        showData ? "Volver" : "Ingresar"
-                    }
-                </button>
+                <button onClick={handleOnClick}>Iniciar sesion</button>
             </section>
         </>
     )
