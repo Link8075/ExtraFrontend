@@ -1,21 +1,16 @@
+import FetchWatching from "./FetchWatching"
+
 export type DataProps = {
     user: any
+    API_URL: string
 }
 
-function Data({user}: DataProps) {
+function Data({API_URL, user}: DataProps) {
     return (
         <>
             {
                 user && (
-                    <section className="dataContainer">
-                        {
-                            <>
-                                <p>Name: {user.user.name}</p>
-                                <p>Email: {user.user.email}</p>
-                                <p>Phone: {user.user.phoneNumber}</p>
-                            </>
-                        }
-                    </section>
+                    <FetchWatching API_URL={API_URL} user={user}/>
                 )
             }
         </>

@@ -22,7 +22,7 @@ function Form () {
         <>
             <EffectStorage setUser={setUser}/>
             <EffectInput email={email} setMessageError={setMessageError}/>
-            <Data user={user}/>
+            <Data API_URL={API_URL} user={user}/>
             <section className="formContainer">
                 <span className="inputContainer">
                     <label htmlFor="email">Email:</label>
