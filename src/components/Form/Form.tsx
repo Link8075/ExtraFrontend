@@ -1,7 +1,6 @@
 import "./Form.css"
 import { useState } from "react"
 import Data from "./Data"
-import EffectStorage from "./EffectStorage"
 import EffectInput from "./EffectInput"
 import handleInputChange from "./InputChange"
 import logIn from "./LogIn"
@@ -20,9 +19,8 @@ function Form () {
     
     return (
         <>
-            <EffectStorage setUser={setUser}/>
             <EffectInput email={email} setMessageError={setMessageError}/>
-            <Data API_URL={API_URL} user={user}/>
+            <Data API_URL={API_URL} user={user} setUser={setUser}/>
             <section className="formContainer">
                 <span className="inputContainer">
                     <label htmlFor="email">Email:</label>
