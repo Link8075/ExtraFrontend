@@ -1,10 +1,60 @@
 .formContainer {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .inputContainer {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
+}
+
+#navegador ul {
+  list-style-type: none;
+  text-align: center;
+}
+
+#navegador li {
+  display: inline;
+  text-align: center;
+  margin: 0 10px 0 0;
+}
+
+#navegador li a {
+  padding: 2px 7px 2px 7px;
+  color: #c9c9c9;
+  background-color: #2a2a2a;
+  border: 1px solid #545454;
+  text-decoration: none;
+}
+
+
+/* Elementos pendientes */
+.card {
+  background-color: #2c004e;
+  border: 1px solid #e6e6e6;
+  padding: 10px 5px;
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  min-width: 1000px;
+}
+
+.card > div {
+  flex: 1 0 calc(33.33% - 20px);
+  margin-right: 20px;
+}
+
+.card p {
+  font-size: 1.275rem;
+  line-height: 1.0;
+  font-weight: 0;
+  margin-bottom: 25px;
+}
+
+.card .name {
+  font-size: 1rem;
+  font-weight: 600;
 }

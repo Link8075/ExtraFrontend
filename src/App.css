@@ -36,10 +36,6 @@
   }
 }
 
-.card {
-  padding: 2em;
-}
-
 .read-the-docs {
   color: #888;
 }
@@ -47,7 +43,7 @@
 main {
   height: 100%;
   width: 100%;
-  display: flex;
+  /* display: flex; */
   flex-direction: column;
   justify-content: space-between;
 }

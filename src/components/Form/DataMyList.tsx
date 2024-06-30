@@ -4,12 +4,12 @@ export type DataProps = {
     user: string
 }
 
-function Data({user}: DataProps) {
+function DataMyList({user}: DataProps) {
     const [info, setInfo] = useState<any>(null)
     
     const handleDelete = async (itemId:string) => {
         try {
-            let url = `http://127.0.0.1:3010/api/v2/watches/eliminar/${itemId}`
+            let url = `http://127.0.0.1:3010/api/v2/mylist/eliminar/${itemId}`
             let options = {};
             const response = await fetch(url, options)
             if (response && response.status === 200) {
@@ -25,7 +25,7 @@ function Data({user}: DataProps) {
     useEffect(() => {
         const data = async() => {
             try {
-                let url = `http://127.0.0.1:3010/api/v2/watches/user/${user}`
+                let url = `http://127.0.0.1:3010/api/v2/mylist/user/${user}`
                 let options = {}
                 const response = await fetch(url, options)
                 const data = await response.json()
@@ -43,16 +43,15 @@ function Data({user}: DataProps) {
                 
                 <div key={item._id}>
                     <div>
-                        <p>Serie: {item.serie}</p>
-                        <p>Temporada: {item.temporada}</p>
-                        <p>Capitulo: {item.capitulo}</p>
-                        <p>Duracion: {item.duracion}</p>
-                        <p>Checkpoint: {item.checkpoint}</p>
+                        <p>Titulo: {item.titulo}</p>
+                        <p>Temporadas: {item.temporadas}</p>
+                        <p>Descripcion: {item.descripcion}</p>
+                        <p>Plataforma: {item.plataforma}</p>
                     </div>
                     
                     <footer>
                         <div>
-                            <Link to={`/editarPendiente/${item._id}`}>Editar</Link>
+                            <Link to={`/editarMiLista/${item._id}`}>Editar</Link>
                             <button onClick={() => handleDelete(item._id)}>Eliminar</button>
                         </div>
                     </footer>
@@ -62,4 +61,4 @@ function Data({user}: DataProps) {
     )
 }
 
-export default Data
+export default DataMyList
